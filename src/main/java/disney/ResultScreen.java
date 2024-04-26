@@ -11,7 +11,8 @@ public class ResultScreen {
 		JFrame f = new JFrame("Button Example");
 		String[] characters = { "Mulan", "Elsa", "Cinderella", "Belle" };
 		String character = characters[index];
-		URL resource = getClass().getResource("/images/character/" + character + ".jpeg");
+		Class<? extends ResultScreen> class1 = getClass();
+		URL resource = class1.getResource("/images/character/" + character + ".jpeg");
 		JButton b = new JButton(new ImageIcon(resource));
 		b.setBounds(50, 50, 200, 200);
 		f.add(b);
