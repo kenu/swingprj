@@ -27,11 +27,12 @@ public class QuestionScreen {
 //		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	private JButton getButton(String text, int y, int resultValue) {
-		JButton b = new JButton(text);
+	private JButton getButton(String answer, int y, int resultValue) {
+		JButton b = new JButton(answer);
 		b.setBounds(50, y, 200, 100);
 		b.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("click " + resultValue);
 				new ResultScreen(resultValue);
 			}
 		});
