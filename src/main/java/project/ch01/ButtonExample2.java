@@ -11,7 +11,7 @@ public class ButtonExample2 {
     JFrame f = new JFrame("Button Example");
     URL resource = getClass().getResource("/images/character/Belle.jpeg");
     JButton b = new JButton(new ImageIcon(resource));
-    b.setBounds(100, 100, 100, 60);
+    b.setBounds(50, 50, 200, 200);
     f.add(b);
     f.setSize(300, 400);
     f.setLayout(null);
