@@ -26,25 +26,8 @@ public class MultiPageApp {
 		// Create a panel that uses CardLayout
 		cards = new JPanel(new CardLayout());
 
-		// Create the "cards".
-		JPanel card1 = new JPanel();
-		card1.add(Scene.getPanel("Text Field", "Button 1", "Button 2"));
-		cards.add(card1, BUTTONPANEL);
-
-		JPanel card3 = new JPanel();
-		card3.add(Scene.getPanel("Text Field 3", "Button 4", "Button 5"));
-		cards.add(card3, BUTTONPANEL);
-
-		JPanel card4 = new JPanel();
-		card4.add(Scene.getPanel("Text Field 4", "Button 7", "Button 8"));
-		cards.add(card4, BUTTONPANEL);
-
-		
-		JPanel cardResult = new JPanel();
-		Class<? extends MultiPageApp> class1 = getClass();
-		cardResult.add(Scene.getResult(1, class1));
-		cards.add(cardResult, TEXTPANEL);
-		
+		setQuestions();
+						
 		// Add the cards to the frame
 		frame.add(cards, BorderLayout.CENTER);
 
@@ -55,14 +38,50 @@ public class MultiPageApp {
 		nextButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CardLayout cl = (CardLayout) (cards.getLayout());
-				cl.next(cards);
+				if (Score.currentStep < 5) {
+					cl.next(cards);				
+				} else {
+					showResult(cl);
+				}
 			}
+
 		});
 		controlPanel.add(nextButton);
 		frame.add(controlPanel, BorderLayout.SOUTH);
 
 		// frame.pack();
 		frame.setVisible(true);
+	}
+
+	private void setQuestions() {
+		// Create the "cards".
+		JPanel card1 = new JPanel();
+		card1.add(Scene.getPanel(1, "Text Field 1", "Button 1", "Button 2"));
+		cards.add(card1, BUTTONPANEL);
+		
+		JPanel card2 = new JPanel();
+		card2.add(Scene.getPanel(2, "Text Field 2", "Button 3", "Button 4"));
+		cards.add(card2, BUTTONPANEL);
+
+		JPanel card3 = new JPanel();
+		card3.add(Scene.getPanel(3, "Text Field 3", "Button 5", "Button 6"));
+		cards.add(card3, BUTTONPANEL);
+
+		JPanel card4 = new JPanel();
+		card4.add(Scene.getPanel(4, "Text Field 4", "Button 7", "Button 8"));
+		cards.add(card4, BUTTONPANEL);
+
+		JPanel card5 = new JPanel();
+		card5.add(Scene.getPanel(5, "Text Field 5", "Button 9", "Button 10"));
+		cards.add(card5, BUTTONPANEL);
+	}
+
+	Class<? extends MultiPageApp> class1 = getClass();
+	private void showResult(CardLayout cl) {
+		JPanel cardResult = new JPanel();
+		cardResult.add(Scene.showResult(class1));
+		cards.add(cardResult, TEXTPANEL);
+		cl.next(cards);
 	}
 
 	public static void main(String[] args) {
